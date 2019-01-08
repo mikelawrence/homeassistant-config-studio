@@ -1,0 +1,111 @@
+################################################################
+#  Packages / Views
+################################################################
+
+################################################
+#  Customize
+################################################
+homeassistant:
+  customize:
+    ################################################
+    #  Customize Group
+    ################################################
+    group.studio_mode:
+      friendly_name: "Studio Mode"
+      icon: mdi:home-variant
+
+    group.default_view:
+      friendly_name: "Studio"
+
+    group.weather_view:
+      friendly_name: "Weather"
+      icon: mdi:weather-lightning
+
+    group.lights_view:
+      friendly_name: "Everything"
+      icon: mdi:lightbulb
+
+################################################
+## Group
+################################################
+group:
+  studio_mode:
+    control: hidden
+    entities:
+      - switch.studio_state
+      - binary_sensor.studio_front_door_sensor
+
+  # Studio ISY-994 group
+  studio:
+    name: Studio
+    control: hidden
+    entities:
+      - light.studio_chandeliers
+      - switch.studio_shoplights
+      - switch.studio_shoplight_a
+      - switch.studio_shoplight_b
+      - switch.studio_shoplight_c
+      - switch.studio_shoplight_d
+
+  # Studio Kitchen ISY-994 group
+  studio_kitchen:
+    name: Studio Kitchen
+    control: hidden
+    entities:
+      - switch.studio_kitchen_lights
+      - light.studio_kitchen_chandelier
+      - light.studio_kitchen_cabinet_lights
+      - light.studio_kitchen_sink_lights
+
+  # Studio Bedroom ISY-994 group
+  studio_bed:
+    name: Studio Bedroom
+    control: hidden
+    entities:
+      - light.studio_bed_fan_light
+      - fan.studio_bed_fan
+      - light.studio_bath_light
+
+  # Studio Loft ISY-994 group
+  studio_loft:
+    name: Studio Loft
+    control: hidden
+    entities:
+      - light.studio_loft_fan_light
+      - fan.studio_loft_fan
+
+  # Backyard ISY-994 group
+  backyard_lights:
+    name: Backyard Lights
+    control: hidden
+    entities:
+      - switch.porch_lights_studio
+      - switch.flood_lights_studio_front
+      - switch.flood_lights_studio_back
+
+  default_view:
+    view: yes
+    entities:
+      - group.studio_mode
+      - group.studio
+      - group.backyard
+      - group.studio_bed
+      - group.studio_kitchen
+      - group.studio_loft
+
+  weather_view:
+    view: yes
+    entities:
+      - group.weewx
+
+  lights_view:
+    view: yes
+    entities:
+      - group.all_scripts
+      - group.all_automations
+      - group.all_scenes
+      - group.all_lights
+      - group.all_switches
+      - group.all_fans
+      - group.all_covers
+      - group.all_devices

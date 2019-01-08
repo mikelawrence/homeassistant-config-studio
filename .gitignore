@@ -1,0 +1,26 @@
+# Python cache
+__pycache__
+*.pyc
+
+._*
+*.uuid
+*.db
+*.db-journal
+*.log
+
+.com.apple.timemachine.supported
+.homekit.state
+.DS_Store
+known_devices.yaml
+secrets.yaml
+*.db-shm
+*.db-wal
+
+# directories
+.cloud
+.storage
+custom_components
+deps
+*.xml
+OZW_Log.txt
+pyozw.sqlite

@@ -1,0 +1,116 @@
+###############################################################
+## Studio Main Configuration
+################################################################
+
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Studio
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 175.87
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Chicago
+  # Packages directory
+  packages: !include_dir_named packages
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Make sure Hass.io appears as a configuration menu item since
+#   discovery: is not used
+hassio:
+
+# ISY-994i integration
+isy994:
+  host: http://192.168.1.212:80
+  username: !secret isy_username
+  password: !secret isy_password
+  enable_climate: false
+
+# Enable MQTT
+mqtt:
+  broker: 192.168.1.3
+  client_id: hassio-studio
+  discovery: false
+  discovery_prefix: hass
+
+mqtt_sharehost:
+  base_topic: hass_share
+  include:
+    entities:
+      - switch.studio_state
+      - switch.studio_christmas_lights
+      - switch.studio_front_porch_light
+      - switch.studio_front_flood_light
+      - switch.studio_back_flood_light
+      - switch.flood_lights_studio
+      - switch.porch_lights_studio
+      - light.studio_chandeliers
+      - switch.studio_shoplights
+      - switch.studio_shoplight_a
+      - switch.studio_shoplight_b
+      - switch.studio_shoplight_c
+      - switch.studio_shoplight_d
+      - switch.studio_kitchen_lights
+      - light.studio_kitchen_chandelier
+      - light.studio_kitchen_cabinet_lights
+      - light.studio_kitchen_sink_lights
+      - fan.studio_bed_fan
+      - light.studio_bed_fan_light
+      - light.studio_bath_light
+      - fan.studio_loft_fan
+      - light.studio_loft_fan_light
+      - binary_sensor.studio_front_door_sensor
+      - binary_sensor.studio_front_door_sensor_hb
+      - binary_sensor.studio_motion_sensor
+      - binary_sensor.studio_motion_sensor_lb
+      - binary_sensor.studio_bath_motion_sensor
+      - binary_sensor.studio_bath_motion_sensor_lb
+      - sensor.hassio_studio_temperature
+      - binary_sensor.studio_multisensor
+      - sensor.studio_multisensor_humidity
+      - sensor.studio_multisensor_luminance
+      - sensor.studio_multisensor_temperature
+
+# Cloud
+cloud:
+
+zwave:
+  usb_path: /dev/ttyACM0
+  network_key: "0x81, 0x28, 0x6D, 0x48, 0xC6, 0x0D, 0x9B, 0x2A, 0xD5, 0xD6, 0xBE, 0x18, 0xFD, 0x46, 0x78, 0x95"
+
+sensor:
+  # temperature of Hassio Raspberri Pi
+  - platform: command_line
+    name: Hassio Studio Temperature
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    # If errors occur, remove degree symbol below
+    unit_of_measurement: "°C"
+    scan_interval: 60
+    value_template: '{{ value | multiply(0.001) | round(1) }}'
