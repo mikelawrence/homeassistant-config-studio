@@ -81,10 +81,10 @@ homeassistant:
     switch.studio_kitchen_lights:
       friendly_name: "Studio Kitchen Lights"
       icon: mdi:lightbulb
-    switch.flood_lights_studio:
+    switch.studio_flood_lights:
       friendly_name: "Studio Flood Lights"
       icon: mdi:lightbulb
-    switch.porch_lights_studio:
+    switch.studio_porch_lights:
       friendly_name: "Studio Porch Lights"
       icon: mdi:lightbulb
 

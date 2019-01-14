@@ -25,6 +25,39 @@ homeassistant:
       friendly_name: "Everything"
       icon: mdi:lightbulb
 
+    # unhide the all_* groups
+    group.all_scripts:
+      control: hidden
+      hidden: false
+
+    group.all_automations:
+      control: hidden
+      hidden: false
+
+    group.all_scenes:
+      control: hidden
+      hidden: false
+
+    group.all_lights:
+      control: hidden
+      hidden: false
+
+    group.all_switches:
+      control: hidden
+      hidden: false
+
+    group.all_fans:
+      control: hidden
+      hidden: false
+
+    group.all_covers:
+      control: hidden
+      hidden: false
+
+    group.all_devices:
+      control: hidden
+      hidden: false
+
 ################################################
 ## Group
 ################################################
@@ -80,23 +113,18 @@ group:
     control: hidden
     entities:
       - switch.porch_lights_studio
-      - switch.flood_lights_studio_front
-      - switch.flood_lights_studio_back
+      - switch.studio_front_flood_light
+      - switch.studio_back_flood_light
 
   default_view:
     view: yes
     entities:
       - group.studio_mode
       - group.studio
-      - group.backyard
+      - group.backyard_lights
       - group.studio_bed
       - group.studio_kitchen
       - group.studio_loft
-
-  weather_view:
-    view: yes
-    entities:
-      - group.weewx
 
   lights_view:
     view: yes
