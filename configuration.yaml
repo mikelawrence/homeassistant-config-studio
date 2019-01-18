@@ -79,11 +79,11 @@ mqtt_sharehost:
     entities:
       - switch.studio_state                         # ISY-994 program HA.switch
       - switch.studio_christmas_lights              # ISY-994 scene
-      - switch.studio_front_porch_light             # ISY-994 switch
-      - switch.studio_front_flood_light             # ISY-994 switch
-      - switch.studio_back_flood_light              # ISY-994 switch
-      - switch.flood_lights_studio                  # ISY-994 scene
-      - switch.porch_lights_studio                  # ISY-994 scene
+      - switch.porch_light_studio_front             # ISY-994 switch
+      - switch.studio_flood_lights                  # ISY-994 scene
+      - switch.studio_flood_lights_front            # ISY-994 scene
+      - switch.studio_flood_lights_back             # ISY-994 scene
+      - switch.studio_porch_lights_front            # ISY-994 scene
       - light.studio_chandeliers                    # ISY-994 light
       - switch.studio_shoplights                    # ISY-994 scene
       - switch.studio_shoplight_a                   # ISY-994 program HA.switch

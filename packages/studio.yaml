@@ -21,13 +21,13 @@ homeassistant:
       friendly_name: "Studio Front Door"
       device_class: door
     binary_sensor.studio_front_door_sensor_hb:
-      friendly_name: "Studio Front Door Sensor Low Battery"
+      friendly_name: "Studio Front Door Sensor Battery"
       device_class: battery
     binary_sensor.studio_motion_sensor_lb:
-      friendly_name: "Studio Motion Sensor Low Battery"
+      friendly_name: "Studio Motion Sensor Battery"
       device_class: battery
     binary_sensor.studio_bath_motion_sensor_lb:
-      friendly_name: "Studio Bathroom Motion Sensor Low Battery"
+      friendly_name: "Studio Bathroom Motion Sensor Battery"
       device_class: battery
 
     ################################################
@@ -84,19 +84,28 @@ homeassistant:
     switch.studio_flood_lights:
       friendly_name: "Studio Flood Lights"
       icon: mdi:lightbulb
+    switch.studio_flood_lights_front:
+      friendly_name: "Studio Flood Lights Front"
+      icon: mdi:lightbulb
+    switch.studio_flood_light_backs:
+      friendly_name: "Studio Flood Lights Back"
+      icon: mdi:lightbulb
     switch.studio_porch_lights:
       friendly_name: "Studio Porch Lights"
+      icon: mdi:lightbulb
+    switch.studio_porch_lights_front:
+      friendly_name: "Studio Porch Lights Front"
       icon: mdi:lightbulb
 
     # ISY-994 switch
     switch.studio_front_porch_light:
-      friendly_name: "Studio Porch Light"
+      friendly_name: "Porch Light Studio"
       icon: mdi:lightbulb
     switch.studio_front_flood_light:
-      friendly_name: "Studio Front Flood Light"
+      friendly_name: "Flood Light Studio Front"
       icon: mdi:lightbulb
     switch.studio_back_flood_light:
-      friendly_name: "Studio Back Flood Light"
+      friendly_name: "Flood Light Studio Back"
       icon: mdi:lightbulb
 
     ################################################
