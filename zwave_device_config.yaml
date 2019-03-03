@@ -1,0 +1,21 @@
+sensor.studio_bath_multisensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.studio_bath_multisensor_burglar:
+  ignored: true
+  polling_intensity: 0
+sensor.studio_bath_multisensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.studio_bath_multisensor_ultraviolet:
+  ignored: true
+  polling_intensity: 0
+sensor.studio_bath_multisensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.studio_attic_multisensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0

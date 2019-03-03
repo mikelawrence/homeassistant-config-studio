@@ -12,7 +12,7 @@ homeassistant:
   customize:
 
     ################################################
-    ## Binary Sensor
+    ## ISY994 Binary Sensor (Door)
     ################################################
     # ISY-994 door sensor component converts the
     # heartbeat into a low battery by going high
@@ -23,15 +23,16 @@ homeassistant:
     binary_sensor.studio_front_door_sensor_hb:
       friendly_name: "Studio Front Door Sensor Battery"
       device_class: battery
+
+    ################################################
+    ## ISY994 Binary Sensor (Motion)
+    ################################################
     binary_sensor.studio_motion_sensor_lb:
       friendly_name: "Studio Motion Sensor Battery"
       device_class: battery
-    binary_sensor.studio_bath_motion_sensor_lb:
-      friendly_name: "Studio Bathroom Motion Sensor Battery"
-      device_class: battery
 
     ################################################
-    ## Light
+    ## ISY994 Lights
     ################################################
     light.studio_chandeliers:
       friendly_name: "Studio Chandeliers"
@@ -39,7 +40,7 @@ homeassistant:
     light.studio_bed_fan_light:
       friendly_name: "Studio Bedroom Light"
     light.studio_bath_light:
-      friendly_name: "Studio Bathroom Light"
+      friendly_name: "Studio Bath Light"
     light.studio_kitchen_chandelier:
       friendly_name: "Studio Kitchen Chandelier"
       icon: mdi:ceiling-light
@@ -52,9 +53,8 @@ homeassistant:
       friendly_name: "Studio Loft Light"
 
     ################################################
-    ## Switch
+    ## ISY994 HA.switch "Program Switch"
     ################################################
-    # ISY-994 HA.switch "Program Switches"
     switch.studio_state:                    # 'on' = Home, 'off' = Away
       friendly_name: "Studio Home"
       icon: mdi:home
@@ -71,7 +71,9 @@ homeassistant:
       friendly_name: "Studio Shoplight D"
       icon: mdi:spotlight-beam
 
-    # ISY-994 scenes
+    ################################################
+    ## ISY994 Scenes
+    ################################################
     switch.studio_chandeliers:
       friendly_name: "Studio Chandeliers"
       icon: mdi:ceiling-light
@@ -97,7 +99,9 @@ homeassistant:
       friendly_name: "Studio Porch Lights Front"
       icon: mdi:lightbulb
 
-    # ISY-994 switch
+    ################################################
+    ## ISY994 Switches
+    ################################################
     switch.studio_front_porch_light:
       friendly_name: "Porch Light Studio"
       icon: mdi:lightbulb
@@ -109,9 +113,44 @@ homeassistant:
       icon: mdi:lightbulb
 
     ################################################
-    ## Fan
+    ## ISY994 Fans
     ################################################
     fan.studio_bed_fan:
       friendly_name: "Studio Bedroom Fan"
     fan.studio_loft_fan:
       friendly_name: "Studio Loft Fan"
+
+################################################################
+## Sensors
+################################################################
+sensor:
+  - platform: template
+    sensors:
+      studio_bath_multisensor_battery:
+        friendly_name: "Studio Bath Multisensor Battery"
+        value_template: "{{ state_attr('zwave.studio_bath_multisensor', 'battery_level') }}"
+        unit_of_measurement: "%"
+        icon_template: >-
+          {% set battery_level = state_attr('zwave.studio_bath_multisensor', 'battery_level') | default(0) | int %}
+          {% set battery_round = (battery_level / 10) | int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+      studio_attic_multisensor_battery:
+        friendly_name: "Studio Attic Multisensor Battery"
+        value_template: "{{ state_attr('zwave.studio_attic_multisensor', 'battery_level') }}"
+        unit_of_measurement: "%"
+        icon_template: >-
+          {% set battery_level = state_attr('zwave.studio_attic_multisensor', 'battery_level') | default(0) | int %}
+          {% set battery_round = (battery_level / 10) | int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}

@@ -112,9 +112,9 @@ group:
     name: Backyard Lights
     control: hidden
     entities:
-      - switch.porch_lights_studio
-      - switch.studio_front_flood_light
-      - switch.studio_back_flood_light
+      - switch.studio_porch_lights
+      - switch.flood_light_studio_front
+      - switch.flood_light_studio_back
 
   default_view:
     view: yes

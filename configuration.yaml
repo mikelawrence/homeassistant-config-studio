@@ -23,6 +23,9 @@ frontend:
 # Enables configuration UI
 config:
 
+# enables system health
+system_health:
+
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:
 #   base_url: example.duckdns.org:8123
@@ -59,16 +62,16 @@ updater:
 #   discovery: is not used
 hassio:
 
-# ISY-994i integration
+# Studio ISY-994i integration
 isy994:
-  host: http://192.168.1.212:80
+  host: http://192.168.1.205:80
   username: !secret isy_username
   password: !secret isy_password
   enable_climate: false
 
-# Enable MQTT
+# Enable MQTT (Server is on Studio Hassio Raspberry Pi)
 mqtt:
-  broker: 192.168.1.3
+  broker: mqtt-server.home
   client_id: hassio-studio
   discovery: false
 
@@ -77,33 +80,47 @@ mqtt_sharehost:
   base_topic: hass_share
   include:
     entities:
-      - switch.studio_state                         # ISY-994 program HA.switch
-      - switch.studio_christmas_lights              # ISY-994 scene
-      - switch.porch_light_studio_front             # ISY-994 switch
-      - switch.studio_flood_lights                  # ISY-994 scene
-      - switch.studio_flood_lights_front            # ISY-994 scene
-      - switch.studio_flood_lights_back             # ISY-994 scene
-      - switch.studio_porch_lights_front            # ISY-994 scene
-      - light.studio_chandeliers                    # ISY-994 light
-      - switch.studio_shoplights                    # ISY-994 scene
-      - switch.studio_shoplight_a                   # ISY-994 program HA.switch
-      - switch.studio_shoplight_b                   # ISY-994 program HA.switch
-      - switch.studio_shoplight_c                   # ISY-994 program HA.switch
-      - switch.studio_shoplight_d                   # ISY-994 program HA.switch
-      - switch.studio_kitchen_lights                # ISY-994 scene
-      - light.studio_kitchen_chandelier             # ISY-994 light
-      - light.studio_kitchen_cabinet_lights         # ISY-994 light
-      - light.studio_kitchen_sink_lights            # ISY-994 light
-      - fan.studio_bed_fan                          # ISY-994 fan
-      - light.studio_bed_fan_light                  # ISY-994 light
-      - light.studio_bath_light                     # ISY-994 light
-      - fan.studio_loft_fan                         # ISY-994 fan
-      - light.studio_loft_fan_light                 # ISY-994 light
-      - binary_sensor.studio_front_door_sensor      # ISY-994 door sensor
-      - binary_sensor.studio_front_door_sensor_hb   # ISY-994 door sensor heartbeat
-      - binary_sensor.studio_motion_sensor          # ISY-994 motion sensor
-      - binary_sensor.studio_motion_sensor_lb       # ISY-994 motion sensor battery
-      - sensor.hassio_studio_temperature            # Raspberry Pi CPU temp
+      - switch.studio_state                           # ISY994 program HA.switch
+      - switch.studio_christmas_lights                # ISY994 scene
+      - switch.porch_light_studio_front               # ISY994 switch
+      - switch.flood_light_studio_front               # ISY994 switch
+      - switch.studio_flood_lights                    # ISY994 scene
+      - switch.studio_flood_lights_front              # ISY994 scene
+      - switch.studio_flood_lights_back               # ISY994 scene
+      - switch.studio_porch_lights_front              # ISY994 scene
+      - light.studio_chandeliers                      # ISY994 light
+      - switch.studio_shoplights                      # ISY994 scene
+      - switch.studio_shoplight_a                     # ISY994 program HA.switch
+      - switch.studio_shoplight_b                     # ISY994 program HA.switch
+      - switch.studio_shoplight_c                     # ISY994 program HA.switch
+      - switch.studio_shoplight_d                     # ISY994 program HA.switch
+      - switch.studio_kitchen_lights                  # ISY994 scene
+      - light.studio_kitchen_chandelier               # ISY994 light
+      - light.studio_kitchen_cabinet_lights           # ISY994 light
+      - light.studio_kitchen_sink_lights              # ISY994 light
+      - fan.studio_bed_fan                            # ISY994 fan
+      - light.studio_bed_fan_light                    # ISY994 light
+      - light.studio_bath_light                       # ISY994 light
+      - switch.studio_bath_vent_fan                   # ISY994 switch
+      - switch.studio_bath_light                      # ISY994 scene
+      - switch.studio_bath_light_nighttime            # ISY994 scene
+      - fan.studio_loft_fan                           # ISY994 fan
+      - light.studio_loft_fan_light                   # ISY994 light
+      - binary_sensor.studio_front_door_sensor        # ISY994 door sensor
+      - binary_sensor.studio_front_door_sensor_hb     # ISY994 door sensor heartbeat
+      - binary_sensor.studio_motion_sensor            # ISY994 motion sensor
+      - binary_sensor.studio_motion_sensor_lb         # ISY994 motion sensor battery
+      - binary_sensor.studio_bath_multisensor_motion  # Z-Wave Aeotec Multisensor 6
+      - sensor.studio_bath_multisensor_humidity       # Z-Wave Aeotec Multisensor 6 humidity
+      - sensor.studio_bath_multisensor_luminance      # Z-Wave Aeotec Multisensor 6 luminance
+      - sensor.studio_bath_multisensor_temperature    # Z-Wave Aeotec Multisensor 6 temperature
+      - sensor.studio_bath_multisensor_battery        # Z-Wave Aeotec Multisensor battery
+      - binary_sensor.studio_attic_multisensor_motion # Z-Wave Zooz Multisensor
+      - sensor.studio_attic_multisensor_humidity      # Z-Wave Zooz Multisensor 6 humidity
+      - sensor.studio_attic_multisensor_luminance     # Z-Wave Zooz Multisensor 6 luminance
+      - sensor.studio_attic_multisensor_temperature   # Z-Wave Zooz Multisensor 6 temperature
+      - sensor.studio_attic_multisensor_battery       # Z-Wave Zooz Multisensor battery
+      - sensor.hassio_studio_temperature              # Raspberry Pi CPU temp
 
 # Enable Z-Wave
 zwave:
