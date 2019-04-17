@@ -1,0 +1,83 @@
+################################################################
+## Lovelace configuration
+################################################################
+
+title: Lawrence Home
+views:
+  - title: Studio
+    cards:
+      - type: entities
+        title: Studio Mode
+        show_header_toggle: false
+        entities:
+          - switch.studio_state
+          - binary_sensor.studio_front_door_sensor
+          - binary_sensor.studio_front_door_sensor_hb
+      - type: entities
+        title: Studio
+        show_header_toggle: false
+        entities:
+          - light.studio_chandeliers
+          - switch.studio_shoplights
+          - switch.studio_shoplight_a
+          - switch.studio_shoplight_b
+          - switch.studio_shoplight_c
+          - switch.studio_shoplight_d
+          - binary_sensor.studio_motion_sensor
+          - binary_sensor.studio_motion_sensor_lb
+          - binary_sensor.studio_multisensor_motion
+          - sensor.studio_multisensor_battery
+          - sensor.studio_multisensor_temperature
+          - sensor.studio_multisensor_humidity
+          - sensor.studio_multisensor_luminance
+      - type: entities
+        title: Backyard Lights
+        show_header_toggle: false
+        entities:
+          - switch.studio_porch_lights
+          - switch.flood_light_studio_front
+          - switch.flood_light_studio_back
+      - type: entities
+        title: Studio Bedroom
+        show_header_toggle: false
+        entities:
+          - light.studio_bed_fan_light
+          - fan.studio_bed_fan
+          - light.studio_bath_light
+          - binary_sensor.studio_bath_multisensor_motion
+          - sensor.studio_bath_multisensor_battery
+          - sensor.studio_bath_multisensor_temperature
+          - sensor.studio_bath_multisensor_humidity
+          - sensor.studio_bath_multisensor_luminance
+      - type: entities
+        title: Studio Kitchen
+        show_header_toggle: false
+        entities:
+          - switch.studio_kitchen_lights
+          - light.studio_kitchen_chandelier
+          - light.studio_kitchen_cabinet_lights
+          - light.studio_kitchen_sink_lights
+      - type: entities
+        title: Studio Attic
+        show_header_toggle: false
+        entities:
+          - binary_sensor.studio_attic_multisensor_motion
+          - sensor.studio_attic_multisensor_battery
+          - sensor.studio_attic_multisensor_temperature
+          - sensor.studio_attic_multisensor_humidity
+          - sensor.studio_attic_multisensor_luminance
+  - title: Devices
+    icon: mdi:lightbulb
+    cards:
+      - type: entities
+        title: Motion Sensors
+        show_header_toggle: false
+        entities:
+          - group.all_scripts
+          - group.all_automations
+          - group.all_scenes
+          - group.all_lights
+          - group.all_switches
+          - group.all_fans
+          - group.all_covers
+          - group.all_devices

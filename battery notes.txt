@@ -1,2 +1,11 @@
 Attic Multisensor (using default config options)
   02-26-2019 batteries installed
+
+Studio Bath Multisensor
+  02-01-2019 batteries installed (estimate)
+
+Studio Multisensor near door
+  03-24-2019 batteries installed (lithium batteries)
+
+Studio Front Door Sensor
+  04-16-2019 batteries installed (lithium batteries)

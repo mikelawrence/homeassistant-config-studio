@@ -23,6 +23,10 @@ frontend:
 # Enables configuration UI
 config:
 
+# Enables Lovelace YAML
+lovelace:
+  mode: yaml
+
 # enables system health
 system_health:
 
@@ -39,9 +43,9 @@ updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   include_used_components: true
 
-# # Enables support for tracking state changes over time
-# history:
-#
+# Enables support for tracking state changes over time
+history:
+
 # # View all events in a logbook
 # logbook:
 #
@@ -114,11 +118,16 @@ mqtt_sharehost:
       - sensor.studio_bath_multisensor_humidity       # Z-Wave Aeotec Multisensor 6 humidity
       - sensor.studio_bath_multisensor_luminance      # Z-Wave Aeotec Multisensor 6 luminance
       - sensor.studio_bath_multisensor_temperature    # Z-Wave Aeotec Multisensor 6 temperature
-      - sensor.studio_bath_multisensor_battery        # Z-Wave Aeotec Multisensor battery
+      - sensor.studio_bath_multisensor_battery        # Z-Wave Aeotec Multisensor 6 battery
+      - binary_sensor.studio_multisensor_motion       # Z-Wave Aeotec Multisensor 6
+      - sensor.studio_multisensor_humidity            # Z-Wave Aeotec Multisensor 6 humidity
+      - sensor.studio_multisensor_luminance           # Z-Wave Aeotec Multisensor 6 luminance
+      - sensor.studio_multisensor_temperature         # Z-Wave Aeotec Multisensor 6 temperature
+      - sensor.studio_multisensor_battery             # Z-Wave Aeotec Multisensor 6 battery
       - binary_sensor.studio_attic_multisensor_motion # Z-Wave Zooz Multisensor
-      - sensor.studio_attic_multisensor_humidity      # Z-Wave Zooz Multisensor 6 humidity
-      - sensor.studio_attic_multisensor_luminance     # Z-Wave Zooz Multisensor 6 luminance
-      - sensor.studio_attic_multisensor_temperature   # Z-Wave Zooz Multisensor 6 temperature
+      - sensor.studio_attic_multisensor_humidity      # Z-Wave Zooz Multisensor humidity
+      - sensor.studio_attic_multisensor_luminance     # Z-Wave Zooz Multisensor luminance
+      - sensor.studio_attic_multisensor_temperature   # Z-Wave Zooz Multisensor temperature
       - sensor.studio_attic_multisensor_battery       # Z-Wave Zooz Multisensor battery
       - sensor.hassio_studio_temperature              # Raspberry Pi CPU temp
 
@@ -128,7 +137,7 @@ zwave:
   network_key: "0x81, 0x28, 0x6D, 0x48, 0xC6, 0x0D, 0x9B, 0x2A, 0xD5, 0xD6, 0xBE, 0x18, 0xFD, 0x46, 0x78, 0x95"
 
 sensor:
-  # temperature of Hassio Raspberri Pi
+  # temperature of Hassio Raspberry Pi
   - platform: command_line
     name: Hassio Studio Temperature
     command: "cat /sys/class/thermal/thermal_zone0/temp"
