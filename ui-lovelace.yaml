@@ -66,6 +66,12 @@ views:
           - sensor.studio_attic_multisensor_temperature
           - sensor.studio_attic_multisensor_humidity
           - sensor.studio_attic_multisensor_luminance
+      - type: entities
+        title: Studio Loft
+        show_header_toggle: false
+        entities:
+          - light.studio_loft_fan_light
+          - fan.studio_loft_fan
   - title: Devices
     icon: mdi:lightbulb
     cards:

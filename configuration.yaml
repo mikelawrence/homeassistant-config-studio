@@ -130,6 +130,9 @@ mqtt_sharehost:
       - sensor.studio_attic_multisensor_temperature   # Z-Wave Zooz Multisensor temperature
       - sensor.studio_attic_multisensor_battery       # Z-Wave Zooz Multisensor battery
       - sensor.hassio_studio_temperature              # Raspberry Pi CPU temp
+      - zwave.studio_attic_multisensor
+      - zwave.studio_multisensor
+      - zwave.studio_bath_multisensor
 
 # Enable Z-Wave
 zwave:
