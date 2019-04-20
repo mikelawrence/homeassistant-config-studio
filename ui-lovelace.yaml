@@ -72,18 +72,3 @@ views:
         entities:
           - light.studio_loft_fan_light
           - fan.studio_loft_fan
-  - title: Devices
-    icon: mdi:lightbulb
-    cards:
-      - type: entities
-        title: Motion Sensors
-        show_header_toggle: false
-        entities:
-          - group.all_scripts
-          - group.all_automations
-          - group.all_scenes
-          - group.all_lights
-          - group.all_switches
-          - group.all_fans
-          - group.all_covers
-          - group.all_devices

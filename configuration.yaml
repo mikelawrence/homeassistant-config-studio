@@ -14,8 +14,151 @@ homeassistant:
   unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/Chicago
-  # Packages directory
-  packages: !include_dir_named packages
+  # Customize entities
+  customize:
+    ################################################
+    ## ISY994 Binary Sensor (Door)
+    ################################################
+    # ISY-994 door sensor component converts the
+    # heartbeat into a low battery by going high
+    # when the hearbeat is missed
+    binary_sensor.studio_front_door_sensor:
+      friendly_name: "Studio Front Door"
+      device_class: door
+    binary_sensor.studio_front_door_sensor_hb:
+      friendly_name: "Studio Front Door Sensor Battery"
+      device_class: battery
+
+    ################################################
+    ## ISY994 Binary Sensor (Motion)
+    ################################################
+    binary_sensor.studio_motion_sensor_lb:
+      friendly_name: "Studio Motion Sensor Battery"
+      device_class: battery
+
+    ################################################
+    ## Z-Wave Binary Sensor (Motion)
+    ################################################
+    binary_sensor.studio_multisensor_motion:
+      friendly_name: "Studio Multisensor Motion"
+      device_class: motion
+    binary_sensor.studio_bath_multisensor_motion:
+      friendly_name: "Studio Bath Multisensor Motion"
+      device_class: motion
+    binary_sensor.studio_attic_multisensor_motion:
+      friendly_name: "Studio Attic Multisensor Motion"
+      device_class: motion
+
+    ################################################
+    ## ISY994 Lights
+    ################################################
+    light.studio_chandeliers:
+      friendly_name: "Studio Chandeliers"
+      icon: mdi:ceiling-light
+    light.studio_bed_fan_light:
+      friendly_name: "Studio Bedroom Light"
+    light.studio_bath_light:
+      friendly_name: "Studio Bath Light"
+    light.studio_kitchen_chandelier:
+      friendly_name: "Studio Kitchen Chandelier"
+      icon: mdi:ceiling-light
+    light.studio_kitchen_sink_lights:
+      friendly_name: "Studio Kitchen Sink Lights"
+      icon: mdi:ceiling-light
+    light.studio_kitchen_cabinet_lights:
+      friendly_name: "Studio Kitchen Cabinet Lights"
+    light.studio_loft_fan_light:
+      friendly_name: "Studio Loft Light"
+
+    ################################################
+    ## ISY994 HA.switch "Program Switch"
+    ################################################
+    switch.studio_state:                    # 'on' = Home, 'off' = Away
+      friendly_name: "Studio Home"
+      icon: mdi:home
+    switch.studio_shoplight_a:
+      friendly_name: "Studio Shoplight A"
+      icon: mdi:spotlight-beam
+    switch.studio_shoplight_b:
+      friendly_name: "Studio Shoplight B"
+      icon: mdi:spotlight-beam
+    switch.studio_shoplight_c:
+      friendly_name: "Studio Shoplight C"
+      icon: mdi:spotlight-beam
+    switch.studio_shoplight_d:
+      friendly_name: "Studio Shoplight D"
+      icon: mdi:spotlight-beam
+
+    ################################################
+    ## ISY994 Scenes
+    ################################################
+    switch.studio_chandeliers:
+      friendly_name: "Studio Chandeliers"
+      icon: mdi:ceiling-light
+    switch.studio_shoplights:
+      friendly_name: "Studio Shoplights"
+      icon: mdi:spotlight-beam
+    switch.studio_kitchen_lights:
+      friendly_name: "Studio Kitchen Lights"
+      icon: mdi:lightbulb
+    switch.studio_flood_lights:
+      friendly_name: "Studio Flood Lights"
+      icon: mdi:lightbulb
+    switch.studio_flood_lights_front:
+      friendly_name: "Studio Flood Lights Front"
+      icon: mdi:lightbulb
+    switch.studio_flood_light_backs:
+      friendly_name: "Studio Flood Lights Back"
+      icon: mdi:lightbulb
+    switch.studio_porch_lights:
+      friendly_name: "Studio Porch Lights"
+      icon: mdi:lightbulb
+    switch.studio_porch_lights_front:
+      friendly_name: "Studio Porch Lights Front"
+      icon: mdi:lightbulb
+
+    ################################################
+    ## ISY994 Switches
+    ################################################
+    switch.studio_front_porch_light:
+      friendly_name: "Porch Light Studio"
+      icon: mdi:lightbulb
+    switch.studio_front_flood_light:
+      friendly_name: "Flood Light Studio Front"
+      icon: mdi:lightbulb
+    switch.studio_back_flood_light:
+      friendly_name: "Flood Light Studio Back"
+      icon: mdi:lightbulb
+
+    ################################################
+    ## ISY994 Fans
+    ################################################
+    fan.studio_bed_fan:
+      friendly_name: "Studio Bedroom Fan"
+    fan.studio_loft_fan:
+      friendly_name: "Studio Loft Fan"
+
+    ################################################
+    ## Sensors
+    ################################################
+    sensor.studio_multisensor_temperature:
+      device_class: temperature
+    sensor.studio_multisensor_humidity:
+      device_class: humidity
+    sensor.studio_multisensor_luminance:
+      device_class: luminance
+    sensor.studio_bath_multisensor_temperature:
+      device_class: temperature
+    sensor.studio_bath_multisensor_humidity:
+      device_class: humidity
+    sensor.studio_bath_multisensor_luminance:
+      device_class: luminance
+    sensor.studio_attic_multisensor_temperature:
+      device_class: temperature
+    sensor.studio_attic_multisensor_humidity:
+      device_class: humidity
+    sensor.studio_attic_multisensor_luminance:
+      device_class: luminance
 
 # Enables the frontend
 frontend:
@@ -30,15 +173,7 @@ lovelace:
 # enables system health
 system_health:
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
-
 # Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   include_used_components: true
@@ -66,20 +201,26 @@ history:
 #   discovery: is not used
 hassio:
 
-# Studio ISY-994i integration
+################################################################
+## Studio ISY-994i integration
+################################################################
 isy994:
   host: http://192.168.1.205:80
   username: !secret isy_username
   password: !secret isy_password
   enable_climate: false
 
-# Enable MQTT (Server is on Studio Hassio Raspberry Pi)
+################################################################
+## MQTT integration
+################################################################
 mqtt:
   broker: mqtt-server.home
   client_id: hassio-studio
   discovery: false
 
-# Share local entites with other Home Assistant instances
+################################################################
+## Share local entites with other Home Assistant instances
+################################################################
 mqtt_sharehost:
   base_topic: hass_share
   include:
@@ -134,17 +275,41 @@ mqtt_sharehost:
       - zwave.studio_multisensor
       - zwave.studio_bath_multisensor
 
-# Enable Z-Wave
+################################################################
+## Z-Wave
+################################################################
 zwave:
   usb_path: /dev/ttyACM0
   network_key: "0x81, 0x28, 0x6D, 0x48, 0xC6, 0x0D, 0x9B, 0x2A, 0xD5, 0xD6, 0xBE, 0x18, 0xFD, 0x46, 0x78, 0x95"
 
+################################################################
+## Sensors
+################################################################
 sensor:
   # temperature of Hassio Raspberry Pi
   - platform: command_line
     name: Hassio Studio Temperature
     command: "cat /sys/class/thermal/thermal_zone0/temp"
-    # If errors occur, remove degree symbol below
     unit_of_measurement: "°C"
     scan_interval: 60
     value_template: '{{ value | multiply(0.001) | round(1) }}'
+  - platform: template
+    sensors:
+      # Extract Studio Multisensor battery level from Z-Wave attribute
+      studio_multisensor_battery:
+        friendly_name: "Studio Multisensor Battery"
+        value_template: "{{ state_attr('zwave.studio_multisensor', 'battery_level') }}"
+        unit_of_measurement: "%"
+        device_class: battery
+      # Extract Studio Bath Multisensor battery level from Z-Wave attribute
+      studio_bath_multisensor_battery:
+        friendly_name: "Studio Bath Multisensor Battery"
+        value_template: "{{ state_attr('zwave.studio_bath_multisensor', 'battery_level') }}"
+        unit_of_measurement: "%"
+        device_class: battery
+      # Extract Studio Attic Multisensor battery level from Z-Wave attribute
+      studio_attic_multisensor_battery:
+        friendly_name: "Studio Attic Multisensor Battery"
+        value_template: "{{ state_attr('zwave.studio_attic_multisensor', 'battery_level') }}"
+        unit_of_measurement: "%"
+        device_class: battery
