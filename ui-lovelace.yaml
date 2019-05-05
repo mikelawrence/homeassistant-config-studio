@@ -28,7 +28,6 @@ views:
           - binary_sensor.studio_multisensor_motion
           - sensor.studio_multisensor_battery
           - sensor.studio_multisensor_temperature
-          - sensor.studio_multisensor_humidity
           - sensor.studio_multisensor_luminance
       - type: entities
         title: Backyard Lights
@@ -41,7 +40,7 @@ views:
         title: Studio Bedroom
         show_header_toggle: false
         entities:
-          - light.studio_bed_fan_light
+          - light.studio_bed_light
           - fan.studio_bed_fan
           - light.studio_bath_light
           - binary_sensor.studio_bath_multisensor_motion
@@ -70,5 +69,5 @@ views:
         title: Studio Loft
         show_header_toggle: false
         entities:
-          - light.studio_loft_fan_light
+          - light.studio_loft_light
           - fan.studio_loft_fan

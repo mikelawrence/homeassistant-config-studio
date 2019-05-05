@@ -1,7 +1,6 @@
 ###############################################################
 ## Studio Main Configuration
 ################################################################
-
 homeassistant:
   # Name of the location where Home Assistant is running
   name: Studio
@@ -118,16 +117,13 @@ homeassistant:
       icon: mdi:lightbulb
 
     ################################################
-    ## ISY994 Switches
+    ## ISY994 HA.switches
     ################################################
-    switch.studio_front_porch_light:
-      friendly_name: "Porch Light Studio"
+    switch.studio_porch_lights:
+      friendly_name: "Studio Porch Lights"
       icon: mdi:lightbulb
-    switch.studio_front_flood_light:
-      friendly_name: "Flood Light Studio Front"
-      icon: mdi:lightbulb
-    switch.studio_back_flood_light:
-      friendly_name: "Flood Light Studio Back"
+    switch.studio_flood_lights:
+      friendly_name: "Studio Flood Lights"
       icon: mdi:lightbulb
 
     ################################################
@@ -227,30 +223,29 @@ mqtt_sharehost:
     entities:
       - switch.studio_state                           # ISY994 program HA.switch
       - switch.studio_christmas_lights                # ISY994 scene
-      - switch.porch_light_studio_front               # ISY994 switch
+      - switch.studio_porch_light                     # ISY994 scene
+      - switch.studio_porch_lights                    # ISY994 program HA.switch
       - switch.flood_light_studio_front               # ISY994 switch
-      - switch.studio_flood_lights                    # ISY994 scene
-      - switch.studio_flood_lights_front              # ISY994 scene
-      - switch.studio_flood_lights_back               # ISY994 scene
-      - switch.studio_porch_lights_front              # ISY994 scene
+      - switch.flood_light_studio_back                # ISY994 switch
+      - switch.studio_flood_lights                    # ISY994 program HA.switch
       - light.studio_chandeliers                      # ISY994 light
-      - switch.studio_shoplights                      # ISY994 scene
+      - switch.studio_shoplights                      # ISY994 program HA.switch
       - switch.studio_shoplight_a                     # ISY994 program HA.switch
       - switch.studio_shoplight_b                     # ISY994 program HA.switch
       - switch.studio_shoplight_c                     # ISY994 program HA.switch
       - switch.studio_shoplight_d                     # ISY994 program HA.switch
-      - switch.studio_kitchen_lights                  # ISY994 scene
+      - switch.studio_kitchen_lights                  # ISY994 program HA.switch
       - light.studio_kitchen_chandelier               # ISY994 light
       - light.studio_kitchen_cabinet_lights           # ISY994 light
       - light.studio_kitchen_sink_lights              # ISY994 light
       - fan.studio_bed_fan                            # ISY994 fan
-      - light.studio_bed_fan_light                    # ISY994 light
+      - light.studio_bed_light                        # ISY994 light
       - light.studio_bath_light                       # ISY994 light
       - switch.studio_bath_vent_fan                   # ISY994 switch
       - switch.studio_bath_light                      # ISY994 scene
       - switch.studio_bath_light_nighttime            # ISY994 scene
       - fan.studio_loft_fan                           # ISY994 fan
-      - light.studio_loft_fan_light                   # ISY994 light
+      - light.studio_loft_light                       # ISY994 light
       - binary_sensor.studio_front_door_sensor        # ISY994 door sensor
       - binary_sensor.studio_front_door_sensor_hb     # ISY994 door sensor heartbeat
       - binary_sensor.studio_motion_sensor            # ISY994 motion sensor
@@ -271,9 +266,6 @@ mqtt_sharehost:
       - sensor.studio_attic_multisensor_temperature   # Z-Wave Zooz Multisensor temperature
       - sensor.studio_attic_multisensor_battery       # Z-Wave Zooz Multisensor battery
       - sensor.hassio_studio_temperature              # Raspberry Pi CPU temp
-      - zwave.studio_attic_multisensor
-      - zwave.studio_multisensor
-      - zwave.studio_bath_multisensor
 
 ################################################################
 ## Z-Wave
