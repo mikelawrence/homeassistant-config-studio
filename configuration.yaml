@@ -5,8 +5,8 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Studio
   # Location required to calculate the time the sun rises and sets
-  latitude: !secret latitude
-  longitude: !secret longitude
+  latitude: 30.381591
+  longitude: -97.347110
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 175.87
   # metric for Metric, imperial for Imperial
@@ -20,7 +20,7 @@ homeassistant:
     ################################################
     # ISY-994 door sensor component converts the
     # heartbeat into a low battery by going high
-    # when the hearbeat is missed
+    # when the heartbeat is missed
     binary_sensor.studio_front_door_sensor:
       friendly_name: "Studio Front Door"
       device_class: door
@@ -150,11 +150,8 @@ homeassistant:
     sensor.studio_attic_multisensor_luminance:
       device_class: luminance
 
-# Enables the frontend
-frontend:
-
-# Enables configuration UI
-config:
+# enable default configurations
+default_config:
 
 # Enables Lovelace YAML
 lovelace:
@@ -171,47 +168,10 @@ updater:
 # Enables support for tracking state changes over time
 history:
 
-# # View all events in a logbook
-# logbook:
-#
-# # recorder configuration
-# recorder:
-#   purge_keep_days: 3
-#   purge_interval: 1
-#   exclude:
-#     domains:
-#       - automation
-#       - weblink
-#       - updater
-#     entities:
-#       - sun.sun
-#       - sensor.date
-
-# Make sure Hass.io appears as a configuration menu item since
-#   discovery: is not used
-hassio:
-
 ################################################################
-## Studio ISY-994i integration
+## Share local entities with other Home Assistant instances
 ################################################################
-isy994:
-  host: http://192.168.1.205:80
-  username: !secret isy_username
-  password: !secret isy_password
-  enable_climate: false
-
-################################################################
-## MQTT integration
-################################################################
-mqtt:
-  broker: 192.168.1.200
-  client_id: hassio-studio
-  discovery: false
-
-################################################################
-## Share local entites with other Home Assistant instances
-################################################################
-mqtt_sharehost:
+mqtt_share_remote:
   base_topic: hass_share
   include:
     entities:
@@ -264,9 +224,9 @@ mqtt_sharehost:
 ################################################################
 ## Z-Wave
 ################################################################
-zwave:
-  usb_path: /dev/ttyACM0
-  network_key: "0x81, 0x28, 0x6D, 0x48, 0xC6, 0x0D, 0x9B, 0x2A, 0xD5, 0xD6, 0xBE, 0x18, 0xFD, 0x46, 0x78, 0x95"
+# zwave:
+#   usb_path: /dev/ttyACM0
+#   network_key: "0x81, 0x28, 0x6D, 0x48, 0xC6, 0x0D, 0x9B, 0x2A, 0xD5, 0xD6, 0xBE, 0x18, 0xFD, 0x46, 0x78, 0x95"
 
 ################################################################
 ## Sensors
